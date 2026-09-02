@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import { FieldGroup } from "../ui/field";
+import { FieldGroup, FieldSeparator } from "../ui/field";
 
 import ShedSizeSection from "./ShedSizeSection";
 import ShedFloorSettingsSection from "./ShedFloorSettingsSection";
 
-export default function FloorForm() {
+export default function FloorForm({ className }) {
   const [width, setWidth] = useState(10);
   const [length, setLength] = useState(12);
 
@@ -57,13 +57,13 @@ export default function FloorForm() {
   }, [limitSize]);
 
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
         <CardTitle>Shed generator</CardTitle>
       </CardHeader>
       <CardContent>
         <form
-          className="grid grid-cols-3 gap-8"
+          className="flex flex-col gap-6"
           onSubmit={(e) => e.preventDefault()}
         >
           <ShedSizeSection
@@ -74,6 +74,7 @@ export default function FloorForm() {
             limitSize={limitSize}
             onLimitSizeChange={setLimitSize}
           />
+          <FieldSeparator />
           <ShedFloorSettingsSection
             addSkids={addSkids}
             setAddSkids={setAddSkids}
@@ -82,7 +83,7 @@ export default function FloorForm() {
             joistSpacing={joistSpacing}
             setJoistSpacing={setJoistSpacing}
           />
-          <FieldGroup>Area: {shedArea}</FieldGroup>
+          <FieldSeparator />
         </form>
       </CardContent>
     </Card>
