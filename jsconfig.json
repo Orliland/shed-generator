@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "#components/*": "./src/components/*.jsx",
+    "#lib/*": "./src/lib/*.js",
+    "#hooks/*": "./src/hooks/*.js"
+  }
+}
