@@ -1,15 +1,9 @@
 import { useState, useEffect } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardAction,
-} from "../ui/card";
-import { Button } from "../ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { FieldGroup } from "../ui/field";
 
 import ShedSizeSection from "./ShedSizeSection";
+import ShedFloorSettingsSection from "./ShedFloorSettingsSection";
 
 export default function FloorForm() {
   const [width, setWidth] = useState(10);
@@ -17,6 +11,10 @@ export default function FloorForm() {
 
   const [shedArea, setShedArea] = useState(null);
   const [limitSize, setLimitSize] = useState(true);
+
+  const [addSkids, setAddSkids] = useState(false);
+  const [addCornerSupports, setAddCornerSupports] = useState(false);
+  const [joistSpacing, setJoistSpacing] = useState("24");
 
   useEffect(() => {
     if (limitSize) {
@@ -62,9 +60,6 @@ export default function FloorForm() {
     <Card>
       <CardHeader>
         <CardTitle>Shed generator</CardTitle>
-        <CardAction>
-          <Button>Create Shed</Button>
-        </CardAction>
       </CardHeader>
       <CardContent>
         <form
@@ -79,7 +74,14 @@ export default function FloorForm() {
             limitSize={limitSize}
             onLimitSizeChange={setLimitSize}
           />
-          <FieldGroup>section 2</FieldGroup>
+          <ShedFloorSettingsSection
+            addSkids={addSkids}
+            setAddSkids={setAddSkids}
+            addCornerSupports={addCornerSupports}
+            setAddCornerSupports={setAddCornerSupports}
+            joistSpacing={joistSpacing}
+            setJoistSpacing={setJoistSpacing}
+          />
           <FieldGroup>Area: {shedArea}</FieldGroup>
         </form>
       </CardContent>
