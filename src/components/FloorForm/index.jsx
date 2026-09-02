@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import { FieldGroup, FieldSeparator } from "../ui/field";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "../ui/card";
+import { FieldGroup, FieldLegend, FieldSeparator } from "../ui/field";
 
 import ShedSizeSection from "./ShedSizeSection";
 import ShedFloorSettingsSection from "./ShedFloorSettingsSection";
+import { Button } from "../ui/button";
 
 export default function FloorForm({ className }) {
   const [width, setWidth] = useState(10);
@@ -59,11 +66,11 @@ export default function FloorForm({ className }) {
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Shed generator</CardTitle>
+        <CardTitle className="text-xl">Shed generator</CardTitle>
       </CardHeader>
       <CardContent>
         <form
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-4"
           onSubmit={(e) => e.preventDefault()}
         >
           <ShedSizeSection
@@ -84,6 +91,24 @@ export default function FloorForm({ className }) {
             setJoistSpacing={setJoistSpacing}
           />
           <FieldSeparator />
+          <div>
+            <FieldLegend>Shed Area</FieldLegend>
+            <div className="w-full aspect-square grid place-items-center">
+              <div
+                className="border-2 text-center border-black bg-gray-100 border-dashed font-bold  grid place-content-center "
+                style={{
+                  width: `${(width * 100) / 16}%`,
+                  height: `${(length * 100) / 16}%`,
+                }}
+              >
+                {shedArea} sq ft
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <Button>Generate Shed</Button>
+          </div>
         </form>
       </CardContent>
     </Card>

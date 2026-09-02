@@ -8,7 +8,7 @@ function App() {
   return (
     <TooltipProvider>
       {/* TODO: ADD STYLES FOR MOBILE DEVICES */}
-      <main className="p-6 grid grid-cols-2 grid-rows-1 w-full h-dvh">
+      <main className="p-6 grid grid-cols-2 grid-rows-1 w-full max-w-[1440px] mx-auto h-dvh">
         <FloorForm className="w-full max-w-3xs" />
       </main>
     </TooltipProvider>
