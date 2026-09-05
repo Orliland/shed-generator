@@ -1,9 +1,18 @@
-import { Slider } from "../ui/slider";
-import { Checkbox } from "../ui/checkbox";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
-import { FieldGroup, FieldSet, FieldLabel, Field } from "../ui/field";
+import { Slider } from "#components/ui/slider";
+import { Checkbox } from "#components/ui/checkbox";
+import { Tooltip, TooltipTrigger, TooltipContent } from "#components/ui/tooltip";
+import { FieldGroup, FieldSet, FieldLabel, Field } from "#components/ui/field";
 
 // TODO: Add a "ruler" on sliders to show in the top of it, the values available and the current value
+const SliderRuler = ({value}) => {
+  return <div className="relative mb-3">
+    {[...Array(13).keys()].map((_, i) => (
+      <div key={i} className={`absolute w-4 h-4 text-center text-xs  ${value === i + 4 ? 'text-black font-extrabold' : 'text-gray-400 '}`} style={{ left: `calc(${(i / (16 - 4))} * (100% - 16px))` }}>{i + 4}</div>
+    ))}
+  </div>
+}
+
+
 export default function ShedSizeSection({
   width,
   length,
@@ -16,7 +25,8 @@ export default function ShedSizeSection({
     <FieldGroup>
       <FieldSet>
         <Field>
-          <FieldLabel>Width</FieldLabel>
+          <FieldLabel>Width ft</FieldLabel>
+          <SliderRuler value={width} />
           <Slider
             id="width"
             min={4}
@@ -27,7 +37,8 @@ export default function ShedSizeSection({
           />
         </Field>
         <Field>
-          <FieldLabel>Length</FieldLabel>
+          <FieldLabel>Length ft</FieldLabel>
+          <SliderRuler value={length} />
           <Slider
             id="length"
             step={1}
@@ -48,7 +59,7 @@ export default function ShedSizeSection({
             Limit size to 120 sq ft
             <Tooltip>
               <TooltipTrigger>
-                <div className="border-[1px] border-black w-5 h-5 rounded-full">
+                <div className="border border-black w-5 h-5 rounded-full">
                   ?
                 </div>
               </TooltipTrigger>

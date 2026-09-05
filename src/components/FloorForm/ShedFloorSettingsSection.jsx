@@ -4,9 +4,9 @@ import {
   FieldLegend,
   FieldLabel,
   Field,
-} from "../ui/field";
-import { Checkbox } from "../ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+} from "#components/ui/field";
+import { Checkbox } from "#components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "#components/ui/radio-group";
 
 export default function ShedFloorSettingsSection({
   addSkids,
@@ -36,6 +36,7 @@ export default function ShedFloorSettingsSection({
       </FieldSet>
       <FieldSet>
         <FieldLegend>Additional settings</FieldLegend>
+        {/* TODO: Add popovers to show images how looks the skids and corner supports */}
         <Field orientation="horizontal">
           <Checkbox
             id="cornerSupports"
